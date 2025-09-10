@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Result - MediPredict{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <!-- Result Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 text-primary mb-3">
+                    <i class="fas fa-chart-line me-3"></i>Prediction Result
+                </h1>
+                <p class="lead text-muted">
+                    Based on your symptoms, here's what our AI analysis suggests.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Main Result Card -->
+                <div class="col-lg-8">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">
+                                <i class="fas fa-diagnoses me-2"></i>Predicted Disease
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- Patient Information -->
+                            <div class="patient-info mb-4 p-3 bg-light rounded">
+                                <h6 class="text-primary mb-2">
+                                    <i class="fas fa-user me-2"></i>Patient Information
+                                </h6>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <strong>Name:</strong> {{ prediction.name }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>Age:</strong> {{ prediction.age }} years
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>Gender:</strong> {{ prediction.gender.title() }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="result-main text-center mb-4">
+                                <h2 class="text-primary mb-3">{{ prediction.disease }}</h2>
+                                
+                                <!-- Confidence Score -->
+                                <div class="confidence-score mb-4">
+                                    <label class="form-label fw-bold">Confidence Score:</label>
+                                    <div class="progress mb-2" style="height: 25px;">
+                                        <div class="progress-bar bg-{{ 'success' if prediction.confidence > 0.8 else 'warning' if prediction.confidence > 0.6 else 'danger' }}" 
+                                             role="progressbar" 
+                                        >
+                                            {{ (prediction.confidence * 100)|round(1) }}%
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">
+                                        {% if prediction.confidence > 0.8 %}
+                                            High confidence prediction
+                                        {% elif prediction.confidence > 0.6 %}
+                                            Moderate confidence prediction
+                                        {% else %}
+                                            Low confidence prediction - consider consulting a healthcare professional
+                                        {% endif %}
+                                    </small>
+                                </div>
+
+                                <!-- Selected Symptoms -->
+                                <div class="symptoms-summary">
+                                    <h5 class="text-dark mb-3">Your Selected Symptoms:</h5>
+                                    <div class="symptoms-badges">
+                                        {% for symptom in prediction.symptoms %}
+                                        <span class="badge bg-secondary me-1 mb-1">{{ symptom.replace('_', ' ').title() }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="text-center">
+                                <a href="{{ url_for('download_report') }}" class="btn btn-success btn-lg me-3">
+                                    <i class="fas fa-download me-2"></i>Download PDF Report
+                                </a>
+                                <a href="{{ url_for('predict') }}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-redo me-2"></i>New Prediction
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Disease Information -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-info-circle me-2"></i>Disease Information
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            {% if disease_info %}
+                            <div class="disease-info">
+                                <h6 class="text-primary">Description:</h6>
+                                <p class="text-muted mb-3">{{ disease_info.description }}</p>
+                                
+                                <h6 class="text-primary">Common Symptoms:</h6>
+                                <ul class="list-unstyled mb-3">
+                                    {% for symptom in disease_info.common_symptoms %}
+                                    <li><i class="fas fa-circle text-primary me-2" style="font-size: 0.5rem;"></i>{{ symptom }}</li>
+                                    {% endfor %}
+                                </ul>
+                                
+                                <h6 class="text-primary">Severity:</h6>
+                                <span class="badge bg-{{ 'danger' if disease_info.severity == 'High' else 'warning' if disease_info.severity == 'Medium' else 'success' }}">
+                                    {{ disease_info.severity }}
+                                </span>
+                            </div>
+                            {% else %}
+                            <p class="text-muted">Additional information about this condition is not available at the moment.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Recommendations
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            {% if disease_info and disease_info.recommendations %}
+                            <ul class="list-unstyled mb-0">
+                                {% for recommendation in disease_info.recommendations %}
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    {{ recommendation }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Consult with a healthcare professional for proper diagnosis
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Monitor your symptoms and seek medical attention if they worsen
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Follow general health guidelines: rest, hydration, and proper nutrition
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Keep track of symptom changes over time
+                                </li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Emergency Warning -->
+                    <div class="card border-danger">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Important Notice
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-danger mb-2">
+                                <strong>This is not a medical diagnosis!</strong>
+                            </p>
+                            <p class="text-muted mb-3">
+                                This prediction is based on AI analysis and should not replace professional medical advice.
+                            </p>
+                            <div class="emergency-contact">
+                                <p class="mb-2"><strong>Seek immediate medical attention if you experience:</strong></p>
+                                <ul class="text-muted">
+                                    <li>Severe chest pain</li>
+                                    <li>Difficulty breathing</li>
+                                    <li>Severe bleeding</li>
+                                    <li>Loss of consciousness</li>
+                                    <li>Severe allergic reactions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Actions -->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-primary mb-3">What's Next?</h5>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-info w-100">
+                                        <i class="fas fa-chart-bar me-2"></i>View Analytics Dashboard
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ url_for('contact') }}" class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-envelope me-2"></i>Contact Support
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ url_for('about') }}" class="btn btn-outline-primary w-100">
+                                        <i class="fas fa-info-circle me-2"></i>Learn More About AI Diagnosis
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

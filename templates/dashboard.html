@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics Dashboard - MediPredict{% endblock %}
+
+{% block extra_head %}
+<style>
+    .metric-card {
+        transition: transform 0.2s;
+    }
+    .metric-card:hover {
+        transform: translateY(-5px);
+    }
+    .chart-container {
+        position: relative;
+        height: 400px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="display-5 text-primary mb-3">
+                <i class="fas fa-chart-bar me-3"></i>Analytics Dashboard
+            </h1>
+            <p class="lead text-muted">
+                Comprehensive insights into disease predictions and model performance
+            </p>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card metric-card h-100 border-primary">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                    <h2 class="text-primary">{{ total_predictions }}</h2>
+                    <p class="text-muted mb-0">Total Predictions</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card metric-card h-100 border-success">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-day fa-3x text-success mb-3"></i>
+                    <h2 class="text-success">{{ recent_predictions }}</h2>
+                    <p class="text-muted mb-0">Last 30 Days</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card metric-card h-100 border-info">
+                <div class="card-body text-center">
+                    <i class="fas fa-bullseye fa-3x text-info mb-3"></i>
+                    <h2 class="text-info">{{ (model_metrics.accuracy * 100)|round(1) }}%</h2>
+                    <p class="text-muted mb-0">Model Accuracy</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card metric-card h-100 border-warning">
+                <div class="card-body text-center">
+                    <i class="fas fa-cogs fa-3x text-warning mb-3"></i>
+                    <h2 class="text-warning">{{ (model_metrics.f1_score * 100)|round(1) }}%</h2>
+                    <p class="text-muted mb-0">F1 Score</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-brain me-2"></i>Model Performance Metrics
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-3 text-center">
+                            <div class="performance-metric">
+                                <h5 class="text-primary">Accuracy</h5>
+                                <div class="progress mb-2" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" >
+                                        {{ (model_metrics.accuracy * 100)|round(1) }}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 text-center">
+                            <div class="performance-metric">
+                                <h5 class="text-success">Precision</h5>
+                                <div class="progress mb-2" style="height: 20px;">
+                                    <div class="progress-bar bg-success" >
+                                        {{ (model_metrics.precision * 100)|round(1) }}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 text-center">
+                            <div class="performance-metric">
+                                <h5 class="text-info">Recall</h5>
+                                <div class="progress mb-2" style="height: 20px;">
+                                    <div class="progress-bar bg-info" >
+                                        {{ (model_metrics.recall * 100)|round(1) }}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 text-center">
+                            <div class="performance-metric">
+                                <h5 class="text-warning">F1 Score</h5>
+                                <div class="progress mb-2" style="height: 20px;">
+                                    <div class="progress-bar bg-warning" >
+                                        {{ (model_metrics.f1_score * 100)|round(1) }}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-pie me-2"></i>Most Predicted Diseases
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="diseaseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>Predictions Over Time (Last 7 Days)
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>System Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td><strong>Model Type:</strong></td>
+                                <td>{{ model_metrics.get('model_type', 'Random Forest') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Training Dataset:</strong></td>
+                                <td>Synthetic Symptoms Dataset</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Number of Diseases:</strong></td>
+                                <td>100+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Number of Symptoms:</strong></td>
+                                <td>25+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Last Updated:</strong></td>
+                                <td>{{ moment().format('YYYY-MM-DD HH:mm') if moment else 'Recently' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-tools me-2"></i>Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('predict') }}" class="btn btn-primary">
+                            <i class="fas fa-stethoscope me-2"></i>Make New Prediction
+                        </a>
+                        <button class="btn btn-outline-secondary" onclick="refreshDashboard()">
+                            <i class="fas fa-sync-alt me-2"></i>Refresh Data
+                        </button>
+                        <button class="btn btn-outline-info" onclick="exportData()">
+                            <i class="fas fa-download me-2"></i>Export Analytics
+                        </button>
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-dark">
+                            <i class="fas fa-question-circle me-2"></i>About the Model
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// The Flask application renders this block, injecting the data as a JSON object
+// This ensures the data is available to the JavaScript file before it runs
+
+
+
+// Disease Distribution Chart
+const diseaseCtx = document.getElementById('diseaseChart').getContext('2d');
+const diseaseChart = new Chart(diseaseCtx, {
+    type: 'doughnut',
+    data: {
+        labels: diseaseData.labels,
+        datasets: [{
+            data: diseaseData.data,
+            backgroundColor: [
+                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF',
+                '#4BC0C0', '#FF6384'
+            ],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    usePointStyle: true
+                }
+            }
+        }
+    }
+});
+
+// Predictions Over Time Chart
+const timeCtx = document.getElementById('timeChart').getContext('2d');
+const timeChart = new Chart(timeCtx, {
+    type: 'line',
+    data: {
+        labels: timeData.labels,
+        datasets: [{
+            label: 'Predictions',
+            data: timeData.data,
+            borderColor: '#36A2EB',
+            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#36A2EB',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 6
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+    }
+});
+
+// Dashboard functions
+function refreshDashboard() {
+    location.reload();
+}
+
+function exportData() {
+    // In a real application, this would export analytics data
+    alert('Export functionality would be implemented here');
+}
+</script>
+{% endblock %}

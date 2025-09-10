@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - MediPredict{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="row text-center mb-5">
+        <div class="col-12">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="fas fa-envelope me-3"></i>Contact Us
+            </h1>
+            <p class="lead text-muted">
+                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Contact Form -->
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-paper-plane me-2"></i>Send us a Message
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{{ url_for('contact') }}" id="contactForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-tag"></i>
+                                    </span>
+                                    <select class="form-select" id="subject" name="subject" required>
+                                        <option value="">Choose a subject...</option>
+                                        <option value="General Inquiry">General Inquiry</option>
+                                        <option value="Technical Support">Technical Support</option>
+                                        <option value="Feature Request">Feature Request</option>
+                                        <option value="Bug Report">Bug Report</option>
+                                        <option value="Partnership">Partnership Opportunity</option>
+                                        <option value="Media Inquiry">Media Inquiry</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control" id="message" name="message" rows="6" 
+                                          placeholder="Please describe your inquiry in detail..." required></textarea>
+                                <div class="form-text">Minimum 10 characters required</div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="consent" required>
+                                    <label class="form-check-label" for="consent">
+                                        I agree to the processing of my personal data for the purpose of responding to my inquiry.
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                                <button type="reset" class="btn btn-outline-secondary btn-lg px-5 ms-3">
+                                    <i class="fas fa-undo me-2"></i>Reset Form
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="col-lg-4">
+            <!-- Contact Details -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Contact Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="contact-item mb-3">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <strong>Email:</strong><br>
+                        <span class="text-muted">support@medipredict.com</span>
+                    </div>
+                    
+                    <div class="contact-item mb-3">
+                        <i class="fas fa-phone text-success me-2"></i>
+                        <strong>Phone:</strong><br>
+                        <span class="text-muted">+1 (555) 123-4567</span>
+                    </div>
+                    
+                    <div class="contact-item mb-3">
+                        <i class="fas fa-map-marker-alt text-danger me-2"></i>
+                        <strong>Address:</strong><br>
+                        <span class="text-muted">
+                            123 Healthcare Ave<br>
+                            Medical District<br>
+                            Health City, HC 12345
+                        </span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock text-warning me-2"></i>
+                        <strong>Business Hours:</strong><br>
+                        <span class="text-muted">
+                            Monday - Friday: 9:00 AM - 6:00 PM<br>
+                            Saturday: 10:00 AM - 4:00 PM<br>
+                            Sunday: Closed
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Links -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-question-circle me-2"></i>Quick Help
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-info me-2"></i>About Our AI Model
+                        </a>
+                        <a href="{{ url_for('predict') }}" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-stethoscope me-2"></i>Try a Prediction
+                        </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-chart-bar me-2"></i>View Analytics
+                        </a>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="scrollToFAQ()">
+                            <i class="fas fa-question me-2"></i>Common Questions
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-share-alt me-2"></i>Follow Us
+                    </h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="social-links">
+                        <a href="#" class="btn btn-outline-primary me-2">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary me-2">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary me-2">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="text-muted mt-3 mb-0">
+                        Stay updated with our latest features and health insights.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="row mt-5" id="faq">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-question-circle me-2"></i>Frequently Asked Questions
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                    How accurate is the disease prediction?
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our AI model has an accuracy rate of approximately 85%. However, this is meant for educational purposes and should not replace professional medical diagnosis.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                    Is my health information secure?
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we take privacy seriously. Your health information is processed securely and is not stored permanently on our servers.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                    Can I use this instead of seeing a doctor?
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely not. This tool is for educational purposes only. Always consult with a qualified healthcare professional for proper medical advice and treatment.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                                    How do I download a prediction report?
+                                </button>
+                            </h2>
+                            <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    After receiving your prediction results, you'll see a "Download PDF Report" button. Click it to generate and download a comprehensive report.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Form validation
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    const message = document.getElementById('message').value;
+    if (message.length < 10) {
+        e.preventDefault();
+        alert('Please enter a message with at least 10 characters.');
+        return;
+    }
+    
+    // Show loading spinner
+    document.getElementById('loadingSpinner').classList.remove('d-none');
+});
+
+// Scroll to FAQ function
+function scrollToFAQ() {
+    document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Character counter for message
+document.getElementById('message').addEventListener('input', function() {
+    const length = this.value.length;
+    const minLength = 10;
+    const counter = document.getElementById('messageCounter');
+    
+    if (!counter) {
+        const counterElement = document.createElement('div');
+        counterElement.id = 'messageCounter';
+        counterElement.className = 'form-text';
+        this.parentNode.appendChild(counterElement);
+    }
+    
+    document.getElementById('messageCounter').textContent = `${length}/${minLength} characters minimum`;
+    document.getElementById('messageCounter').className = length >= minLength ? 'form-text text-success' : 'form-text text-warning';
+});
+</script>
+{% endblock %}

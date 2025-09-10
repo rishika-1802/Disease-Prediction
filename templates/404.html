@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - MediPredict{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+            <div class="error-page">
+                <!-- Error Icon -->
+                <div class="error-icon mb-4">
+                    <i class="fas fa-search fa-5x text-muted"></i>
+                </div>
+                
+                <!-- Error Number -->
+                <h1 class="display-1 text-primary fw-bold">404</h1>
+                
+                <!-- Error Message -->
+                <h2 class="h3 text-dark mb-3">Page Not Found</h2>
+                <p class="text-muted mb-4">
+                    Sorry, we couldn't find the page you're looking for. 
+                    The page might have been moved, deleted, or the URL might be incorrect.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-home me-2"></i>Go Home
+                    </a>
+                    <a href="{{ url_for('predict') }}" class="btn btn-outline-success btn-lg">
+                        <i class="fas fa-stethoscope me-2"></i>Start Prediction
+                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>Go Back
+                    </button>
+                </div>
+                
+                <!-- Help Links -->
+                <div class="mt-5">
+                    <h5 class="text-primary mb-3">What can you do?</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-search text-info mb-2"></i>
+                                    <h6>Search Our Site</h6>
+                                    <p class="text-muted small mb-0">
+                                        Try using our navigation menu to find what you're looking for.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-envelope text-warning mb-2"></i>
+                                    <h6>Contact Support</h6>
+                                    <p class="text-muted small mb-0">
+                                        <a href="{{ url_for('contact') }}" class="text-decoration-none">
+                                            Let us know about the broken link
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Navigation -->
+                <div class="mt-4">
+                    <h6 class="text-muted mb-3">Quick Navigation</h6>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-primary">Home</a>
+                        <a href="{{ url_for('predict') }}" class="btn btn-sm btn-outline-primary">Disease Prediction</a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-sm btn-outline-primary">Dashboard</a>
+                        <a href="{{ url_for('about') }}" class="btn btn-sm btn-outline-primary">About</a>
+                        <a href="{{ url_for('contact') }}" class="btn btn-sm btn-outline-primary">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-page {
+    padding: 2rem 0;
+}
+
+.error-icon {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: scale(1.05);
+    }
+}
+
+.display-1 {
+    font-size: 8rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .display-1 {
+        font-size: 5rem;
+    }
+    
+    .error-icon i {
+        font-size: 3rem !important;
+    }
+}
+</style>
+{% endblock %}

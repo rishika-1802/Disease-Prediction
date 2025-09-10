@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}MediPredict - AI-Powered Disease Prediction{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold text-primary mb-4">
+                        AI-Powered Disease Prediction
+                    </h1>
+                    <p class="lead text-muted mb-4">
+                        Get instant health insights based on your symptoms using advanced machine learning algorithms. 
+                        Our AI analyzes patterns from thousands of medical cases to provide accurate predictions.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{{ url_for('predict') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-stethoscope me-2"></i>Start Prediction
+                        </a>
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-lg">
+                            <i class="fas fa-info-circle me-2"></i>Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <i class="fas fa-user-md hero-icon text-primary"></i>
+                    <div class="hero-stats mt-4">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="stat-card">
+                                    <h3 class="text-primary">100+</h3>
+                                    <p class="text-muted">Diseases</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-card">
+                                    <h3 class="text-success">25+</h3>
+                                    <p class="text-muted">Symptoms</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-card">
+                                    <h3 class="text-info">85%</h3>
+                                    <p class="text-muted">Accuracy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="section-title">Why Choose MediPredict?</h2>
+                <p class="text-muted">Advanced AI technology meets healthcare accessibility</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain text-primary"></i>
+                    </div>
+                    <h4>AI-Powered Analysis</h4>
+                    <p class="text-muted">
+                        Our machine learning models are trained on comprehensive medical datasets 
+                        to provide accurate disease predictions based on your symptoms.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock text-success"></i>
+                    </div>
+                    <h4>Instant Results</h4>
+                    <p class="text-muted">
+                        Get immediate health insights in seconds. No waiting rooms, 
+                        no appointments - just quick, reliable health predictions.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf text-info"></i>
+                    </div>
+                    <h4>Detailed Reports</h4>
+                    <p class="text-muted">
+                        Download comprehensive PDF reports with your prediction results, 
+                        confidence scores, and recommended next steps.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="section-title">How It Works</h2>
+                <p class="text-muted">Simple steps to get your health prediction</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-3 text-center">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-list-check step-icon text-primary"></i>
+                    <h5>Select Symptoms</h5>
+                    <p class="text-muted">Choose from a comprehensive list of symptoms you're experiencing</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-cogs step-icon text-success"></i>
+                    <h5>AI Analysis</h5>
+                    <p class="text-muted">Our AI processes your symptoms using advanced algorithms</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-chart-line step-icon text-info"></i>
+                    <h5>Get Results</h5>
+                    <p class="text-muted">Receive your prediction with confidence scores and explanations</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <i class="fas fa-download step-icon text-warning"></i>
+                    <h5>Download Report</h5>
+                    <p class="text-muted">Get a detailed PDF report with recommendations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 bg-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="mb-4">Ready to Check Your Health?</h2>
+                <p class="lead mb-4">
+                    Start your health assessment now with our AI-powered disease prediction system. 
+                    Quick, easy, and reliable results in seconds.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="{{ url_for('predict') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-stethoscope me-2"></i>Start Prediction
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-chart-bar me-2"></i>View Analytics
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="disclaimer-section py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="alert alert-warning mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Medical Disclaimer:</strong> This tool is for educational purposes only and should not replace professional medical advice. 
+                    Always consult with a qualified healthcare provider for proper diagnosis and treatment.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}About - MediPredict{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="row text-center mb-5">
+        <div class="col-12">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="fas fa-info-circle me-3"></i>About MediPredict
+            </h1>
+            <p class="lead text-muted">
+                Revolutionizing healthcare accessibility through artificial intelligence
+            </p>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-primary mb-4 text-center">Our Mission</h2>
+                    <p class="lead text-center mb-4">
+                        To democratize healthcare access by providing AI-powered disease prediction tools 
+                        that help people make informed decisions about their health.
+                    </p>
+                    <p class="text-muted text-center">
+                        MediPredict leverages advanced machine learning algorithms to analyze symptoms 
+                        and provide preliminary health insights, bridging the gap between initial health 
+                        concerns and professional medical consultation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center text-primary mb-5">How Our AI Works</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <i class="fas fa-database fa-3x text-primary"></i>
+                            </div>
+                            <h4 class="text-center text-primary">Data Training</h4>
+                            <p class="text-muted">
+                                Our machine learning model is trained on a comprehensive dataset 
+                                containing 100+ diseases and their associated symptoms. The model 
+                                learns patterns and relationships between symptoms and diseases.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <i class="fas fa-brain fa-3x text-success"></i>
+                            </div>
+                            <h4 class="text-center text-success">AI Analysis</h4>
+                            <p class="text-muted">
+                                When you input symptoms, our Random Forest algorithm analyzes 
+                                the combination and compares it against learned patterns to 
+                                predict the most likely disease with a confidence score.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white text-center">
+                    <h3 class="mb-0">
+                        <i class="fas fa-cogs me-2"></i>Technology Stack
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4 text-center">
+                        <div class="col-md-4">
+                            <div class="tech-item">
+                                <i class="fab fa-python fa-3x text-primary mb-3"></i>
+                                <h5>Python & Flask</h5>
+                                <p class="text-muted">Backend web framework for robust and scalable applications</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="tech-item">
+                                <i class="fas fa-robot fa-3x text-success mb-3"></i>
+                                <h5>Scikit-learn</h5>
+                                <p class="text-muted">Machine learning library powering our prediction algorithms</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="tech-item">
+                                <i class="fab fa-bootstrap fa-3x text-warning mb-3"></i>
+                                <h5>Bootstrap 5</h5>
+                                <p class="text-muted">Modern, responsive frontend design framework</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Performance -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>Model Performance
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6 col-md-3">
+                            <div class="performance-stat">
+                                <h3 class="text-primary">85%</h3>
+                                <p class="text-muted">Accuracy</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="performance-stat">
+                                <h3 class="text-success">83%</h3>
+                                <p class="text-muted">Precision</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="performance-stat">
+                                <h3 class="text-info">82%</h3>
+                                <p class="text-muted">Recall</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="performance-stat">
+                                <h3 class="text-warning">82%</h3>
+                                <p class="text-muted">F1 Score</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <p class="text-muted">
+                            These metrics demonstrate the reliability of our AI model in predicting diseases 
+                            based on symptom patterns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center text-primary mb-5">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center h-100">
+                        <i class="fas fa-lightning-bolt fa-3x text-warning mb-3"></i>
+                        <h5>Instant Predictions</h5>
+                        <p class="text-muted">Get disease predictions in seconds, not hours</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center h-100">
+                        <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                        <h5>Privacy Protected</h5>
+                        <p class="text-muted">Your health data is kept secure and private</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center h-100">
+                        <i class="fas fa-mobile-alt fa-3x text-info mb-3"></i>
+                        <h5>Mobile Friendly</h5>
+                        <p class="text-muted">Access from any device, anywhere, anytime</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center h-100">
+                        <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                        <h5>PDF Reports</h5>
+                        <p class="text-muted">Download detailed prediction reports</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Important Disclaimer -->
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark text-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Important Medical Disclaimer
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="text-warning">For Educational and Informational Purposes Only</h5>
+                            <ul class="text-muted">
+                                <li>This tool is designed for educational purposes and preliminary health insights</li>
+                                <li>It should <strong>never</strong> replace professional medical advice, diagnosis, or treatment</li>
+                                <li>Always consult with qualified healthcare providers for proper medical care</li>
+                                <li>In case of medical emergencies, contact emergency services immediately</li>
+                                <li>The predictions are based on patterns in data and may not account for individual medical history</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-user-md fa-5x text-primary opacity-25"></i>
+                            <p class="text-muted mt-3">
+                                <strong>When in doubt, consult a doctor</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
