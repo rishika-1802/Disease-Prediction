@@ -1,42 +1,48 @@
 # 🧠 Disease Prediction System
 
-AI-powered disease prediction system that analyzes user symptoms and predicts possible illnesses using Machine Learning models, integrated with a full-stack web application.
+### ⚡ AI-Powered Healthcare Assistant for Early Disease Detection
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Flask-Backend-818CF8?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-A5B4FC?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS-C4B5FD?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Database-SQLite-DDD6FE?style=for-the-badge">
+</p>
+
+<p align="center">
+  A full-stack ML web application that predicts diseases based on symptoms and provides actionable insights with report generation.
+</p>
 
 ---
 
-## 🚀 Tech Stack
+## 🌟 Key Highlights
 
-![Backend](https://img.shields.io/badge/BACKEND-Flask-4F46E5?style=for-the-badge\&logo=flask\&logoColor=white)
-![ML](https://img.shields.io/badge/ML-Scikit--Learn-6366F1?style=for-the-badge\&logo=scikitlearn\&logoColor=white)
-![Frontend](https://img.shields.io/badge/FRONTEND-HTML/CSS-7C3AED?style=for-the-badge\&logo=html5\&logoColor=white)
-![Database](https://img.shields.io/badge/DATABASE-SQLite-8B5CF6?style=for-the-badge\&logo=sqlite\&logoColor=white)
-![Deployment](https://img.shields.io/badge/DEPLOYMENT-Python-A78BFA?style=for-the-badge\&logo=python\&logoColor=white)
+* 🧠 **ML-powered disease prediction engine**
+* 🌐 **Full-stack Flask web application**
+* 📄 **PDF report generation system**
+* 📚 **Detailed disease information module**
+* ⚡ **Modular and scalable architecture**
 
 ---
+
+## 🖥️ Screenshots
+<img width="1893" height="859" alt="Screenshot 2025-08-08 191226" src="https://github.com/user-attachments/assets/10259287-2c2f-495f-ae31-35ce0ab51bef" />
+<img width="1893" height="859" alt="Screenshot 2025-08-08 191226" src="https://github.com/user-attachments/assets/0b894c44-6734-42fc-9efc-6cb3565e8510" />
+<img width="463" height="445" alt="Screenshot 2025-07-31 144726" src="https://github.com/user-attachments/assets/d14def73-e3e1-4d10-8566-365ac9fcf0b8" />
+<img width="473" height="476" alt="Screenshot 2025-07-31 144752" src="https://github.com/user-attachments/assets/8aa3b3ab-035c-4562-92af-4c89827c356e" />
+
+
+
 
 ## 📌 Overview
 
-The **Disease Prediction System** is a full-stack web application that predicts diseases based on symptoms entered by users.
+The **Disease Prediction System** is designed to assist in early-stage diagnosis by analyzing symptoms entered by users and predicting potential diseases using trained machine learning models.
 
-It combines:
+It bridges the gap between **data science and real-world healthcare applications** by combining:
 
-* 🧠 Machine Learning models for prediction
-* 🌐 Flask backend for handling logic
-* 🎨 HTML/CSS frontend for user interaction
-* 🗄️ SQLite database for storing data
-
-This system helps in early-stage diagnosis and provides quick, data-driven insights.
-
----
-
-## 🎯 Features
-
-* 🩺 Symptom-based disease prediction
-* 🤖 ML model integration (trained on synthetic dataset)
-* 🌐 Web-based interface using Flask
-* 📊 Data preprocessing pipeline
-* 🗄️ Structured backend with modular architecture
-* ⚡ Fast and lightweight execution
+* Machine Learning intelligence
+* Backend logic with Flask
+* Interactive user interface
 
 ---
 
@@ -49,65 +55,109 @@ This system helps in early-stage diagnosis and provides quick, data-driven insig
 
 ---
 
+## 🏗️ System Architecture
+
+```id="9j5r4y"
+User Input → Data Processing → Feature Extraction → ML Model → Prediction → UI Display → PDF Report
+```
+
+---
+
 ## 📂 Project Structure
 
-📦 Disease-Prediction
- ┣ 📂 instance/                # Database instance
- ┣ 📂 static/                  # CSS, JS, assets
- ┣ 📂 templates/               # HTML templates
- ┣ 📂 utils/                   # Helper functions
- ┣ 📜 app.py                   # Flask app entry
- ┣ 📜 main.py                  # Main execution logic
- ┣ 📜 routes.py                # Route definitions
- ┣ 📜 models.py                # DB models
- ┣ 📜 ml_model.py              # ML model logic
- ┣ 📜 data_processor.py        # Data preprocessing
- ┣ 📜 forms.py                 # Form handling
- ┣ 📜 extensions.py            # Flask extensions
- ┣ 📜 sample_data.py           # Sample inputs
- ┣ 📜 pyproject.toml           # Dependencies/config
- ┗ 📜 README.md
- ┗ 📜 requirements.txt
+```id="6z1j8p"
+Disease-Prediction/
+│
+├── instance/
+│
+├── static/
+│   ├── css/
+│   ├── js/
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── predict.html
+│   ├── result.html
+│   ├── about.html
+│   ├── contact.html
+│   ├── 404.html
+│   ├── 500.html
+│
+├── utils/
+│   ├── pdf_generator.py
+│   ├── disease_info.py
+│
+├── app.py
+├── main.py
+├── routes.py
+├── models.py
+├── ml_model.py
+├── data_processor.py
+├── forms.py
+├── extensions.py
+├── sample_data.py
+│
+├── pyproject.toml
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
 ## ⚙️ Installation & Setup
 
-```bash id="k3x8dn"
+```bash id="a2n4k7"
 git clone https://github.com/rishika-1802/Disease-Prediction.git
 cd Disease-Prediction
 
 pip install -r requirements.txt
-
 python app.py
 ```
 
 ---
 
-## 📊 How It Works
+## 🚀 How It Works
 
-1. User enters symptoms via web interface
-2. Data is processed using `data_processor.py`
-3. Features are passed to ML model (`ml_model.py`)
-4. Model predicts disease
-5. Result is displayed on the UI
+1. User enters symptoms
+2. Data preprocessing pipeline processes input
+3. ML model predicts disease
+4. Results are displayed via UI
+5. PDF report can be generated
+6. Disease insights are provided
 
 ---
 
-## 📈 Future Improvements
+## 📈 Future Scope
 
-* 🔍 Integrate real medical datasets
-* 🌐 Deploy on cloud (Render / AWS)
+* 🔍 Integration with real healthcare datasets
+* 🌐 Cloud deployment (AWS / Render)
+* 📱 Mobile-responsive UI
+* 🧠 Deep learning model integration
 * 🧑‍⚕️ Doctor consultation recommendation
-* 📱 Mobile-friendly UI
-* 🧠 Deep Learning model integration
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to fork and improve the system.
+Contributions are welcome! Feel free to fork and improve.
 
 ---
 
+## 📜 License
+
+MIT License
+
+---
+
+## 👩‍💻 Author
+
+**Rishika**
+AI & Data Science Student
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub!
