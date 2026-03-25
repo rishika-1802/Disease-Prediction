@@ -1,38 +1,46 @@
 # 🧠 Disease Prediction System
 
-AI-powered prediction of diseases based on user symptoms using Machine Learning models for early diagnosis and healthcare assistance.
+AI-powered disease prediction system that analyzes user symptoms and predicts possible illnesses using Machine Learning models, integrated with a full-stack web application.
 
 ---
 
 ## 🚀 Tech Stack
 
-![Backend](https://img.shields.io/badge/BACKEND-Python-4F46E5?style=for-the-badge\&logo=python\&logoColor=white)
+![Backend](https://img.shields.io/badge/BACKEND-Flask-4F46E5?style=for-the-badge\&logo=flask\&logoColor=white)
 ![ML](https://img.shields.io/badge/ML-Scikit--Learn-6366F1?style=for-the-badge\&logo=scikitlearn\&logoColor=white)
-![Frontend](https://img.shields.io/badge/FRONTEND-Streamlit-7C3AED?style=for-the-badge\&logo=streamlit\&logoColor=white)
-![Data](https://img.shields.io/badge/DATA-Pandas-8B5CF6?style=for-the-badge\&logo=pandas\&logoColor=white)
-![Visualization](https://img.shields.io/badge/VISUALIZATION-Matplotlib-A78BFA?style=for-the-badge\&logo=plotly\&logoColor=white)
+![Frontend](https://img.shields.io/badge/FRONTEND-HTML/CSS-7C3AED?style=for-the-badge\&logo=html5\&logoColor=white)
+![Database](https://img.shields.io/badge/DATABASE-SQLite-8B5CF6?style=for-the-badge\&logo=sqlite\&logoColor=white)
+![Deployment](https://img.shields.io/badge/DEPLOYMENT-Python-A78BFA?style=for-the-badge\&logo=python\&logoColor=white)
 
 ---
 
 ## 📌 Overview
 
-The **Disease Prediction System** is a machine learning-based application designed to predict possible diseases based on symptoms provided by users.
+The **Disease Prediction System** is a full-stack web application that predicts diseases based on symptoms entered by users.
 
-It leverages multiple ML algorithms to improve prediction accuracy and provide quick, data-driven insights that can assist in early diagnosis.
+It combines:
+
+* 🧠 Machine Learning models for prediction
+* 🌐 Flask backend for handling logic
+* 🎨 HTML/CSS frontend for user interaction
+* 🗄️ SQLite database for storing data
+
+This system helps in early-stage diagnosis and provides quick, data-driven insights.
 
 ---
 
 ## 🎯 Features
 
-* 🩺 Predict diseases based on symptoms
-* 🤖 Multiple ML algorithms for better accuracy
-* 📊 Data preprocessing & feature engineering
-* 📈 Model evaluation with performance metrics
-* 💻 User-friendly interface (CLI / GUI / Web)
+* 🩺 Symptom-based disease prediction
+* 🤖 ML model integration (trained on synthetic dataset)
+* 🌐 Web-based interface using Flask
+* 📊 Data preprocessing pipeline
+* 🗄️ Structured backend with modular architecture
+* ⚡ Fast and lightweight execution
 
 ---
 
-## 🧠 Machine Learning Models Used
+## 🧠 Machine Learning Models
 
 * Logistic Regression
 * Decision Tree
@@ -43,23 +51,35 @@ It leverages multiple ML algorithms to improve prediction accuracy and provide q
 
 ## 📂 Project Structure
 
-```
 📦 Disease-Prediction
- ┣ 📜 dataset.csv
- ┣ 📜 model.py
- ┣ 📜 app.py
- ┣ 📜 requirements.txt
+ ┣ 📂 instance/                # Database instance
+ ┣ 📂 static/                  # CSS, JS, assets
+ ┣ 📂 templates/               # HTML templates
+ ┣ 📂 utils/                   # Helper functions
+ ┣ 📜 app.py                   # Flask app entry
+ ┣ 📜 main.py                  # Main execution logic
+ ┣ 📜 routes.py                # Route definitions
+ ┣ 📜 models.py                # DB models
+ ┣ 📜 ml_model.py              # ML model logic
+ ┣ 📜 data_processor.py        # Data preprocessing
+ ┣ 📜 forms.py                 # Form handling
+ ┣ 📜 extensions.py            # Flask extensions
+ ┣ 📜 sample_data.py           # Sample inputs
+ ┣ 📜 pyproject.toml           # Dependencies/config
  ┗ 📜 README.md
+ ┗ 📜 requirements.txt
 ```
 
 ---
 
 ## ⚙️ Installation & Setup
 
-```bash
+```bash id="k3x8dn"
 git clone https://github.com/rishika-1802/Disease-Prediction.git
 cd Disease-Prediction
+
 pip install -r requirements.txt
+
 python app.py
 ```
 
@@ -67,25 +87,27 @@ python app.py
 
 ## 📊 How It Works
 
-1. User inputs symptoms
-2. Data is preprocessed
-3. ML model analyzes input
-4. System predicts the most probable disease
+1. User enters symptoms via web interface
+2. Data is processed using `data_processor.py`
+3. Features are passed to ML model (`ml_model.py`)
+4. Model predicts disease
+5. Result is displayed on the UI
 
 ---
 
 ## 📈 Future Improvements
 
-* 🔍 Add deep learning models
-* 🌐 Deploy as full-stack web app
-* 🧑‍⚕️ Doctor recommendation system
-* 📱 Mobile app integration
+* 🔍 Integrate real medical datasets
+* 🌐 Deploy on cloud (Render / AWS)
+* 🧑‍⚕️ Doctor consultation recommendation
+* 📱 Mobile-friendly UI
+* 🧠 Deep Learning model integration
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to fork the repo and submit a pull request.
+Contributions are welcome! Feel free to fork and improve the system.
 
 ---
 
